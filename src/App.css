@@ -1,0 +1,73 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+.calculator {
+    width: calc(1rem * 2 + 300px);
+    margin: 2rem auto;
+    padding: 1.5rem 1rem;
+    background-color: darkgrey;
+    border-radius: 1rem;
+}
+
+.output-display, .buttons button {
+    font-family: 'Rubik Variable';
+    font-weight: 200;
+}
+
+.output-display {
+    font-size: 28pt;
+    padding: 0.5rem;
+    width: 300px;
+    border: none;
+    border-radius: 0.4rem;
+    background: radial-gradient(circle at top left, rgb(176, 230, 255), rgb(166, 222, 248));
+    color: #222222;
+    text-align: right;
+}
+
+.buttons {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 60px);
+    gap: 0.4rem;
+    padding-top: 1.5rem;
+}
+
+.buttons button {
+    font-size: 28pt;
+    border: none;
+    border-radius: 0.4rem;
+    background-color: white;
+    color: #222222;
+}
+
+.buttons button[data-value="+"] {
+    grid-column: 4;
+    grid-row-start: 4;
+    grid-row-end: 6;
+}
+
+.buttons button:hover {
+    background-color: lightgray;
+}
+
+.buttons button[data-value="C"] {
+    background-color: rgb(214, 42, 42);
+    color: white;
+}
+
+.buttons button[data-value="C"]:hover {
+    background-color: darkred;
+}
+
+.buttons button[data-value="="] {
+    background-color: green;
+    color: white;
+}
+
+.buttons button[data-value="="]:hover {
+    background-color: darkgreen;
+    color: white;
+}
