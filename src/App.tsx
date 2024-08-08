@@ -23,13 +23,21 @@ const keyboardMap: { [key: string]: string } = {
     'Delete': 'C',
 };
 
+const roundTo = 10000000;
+
 const calculateAnswer = (text: string): string => {
     try {
         let expression = '';
         for (const char of text) {
             expression += operatorMap[char] ?? char;
         }
-        return '' + (eval(expression) ?? '');
+        
+        let answer = eval(expression);
+        if (typeof answer === 'number') {
+            answer = Math.round(answer * roundTo) / roundTo;
+        }
+
+        return '' + (answer ?? '');
     } catch (exception) {
         return 'Error!';
     }
