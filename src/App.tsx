@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './App.css';
 import '@fontsource-variable/rubik';
 
@@ -46,6 +46,11 @@ const calculateAnswer = (text: string): string => {
 export default function App() {
     const [text, setText] = useState("");
 
+    const outputDisplay = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        outputDisplay.current?.setSelectionRange(text.length, text.length);
+    }, [text]);
+
     const getActionForButton = (button: string) => {
         if (button === 'C') {
             return () => setText('');
@@ -79,7 +84,7 @@ export default function App() {
     return (
         <>
             <div className="calculator">    
-                <input className="output-display" disabled value={text} placeholder="0"/>
+                <input className="output-display" disabled value={text} placeholder="0" ref={outputDisplay}/>
                 <div className="buttons">
                     {buttons.map(value =>
                         <button onClick={getActionForButton(value)} key={value} data-value={value}>
